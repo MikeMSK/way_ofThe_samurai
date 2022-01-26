@@ -1,17 +1,27 @@
 import React from 'react';
-import './App.css';
-import {Header} from "./components/Header";
-import {Navbar} from "./components/Navbar";
-import {Profile} from "./components/Profile";
-
+import s from "./App.module.css";
+import {Header} from "./components/Header/Header";
+import {Navbar} from "./components/Navbar/Navbar";
+import {Profile} from "./components/Profile/Profile"
+import {Dialogs} from "./components/Dialogs/Dialogs";
+import {Routes, Route, Link} from "react-router-dom";
 
 
 const App = () => {
     return (
-        <div className={"app-wrapper"}>
+        <div className={s.app_wrapper}>
             <Header/>
             <Navbar/>
-            <Profile/>
+            <div className={s.app_wrapper_content}>
+                <Routes>
+                    <Route path={"/profile"} element={<Profile/>}/>
+                    <Route path={"/messages"} element={<Dialogs/>}/>
+                    {/*<Route path={"/"} element={<News/>}/>*/}
+                    {/*<Route path={"/"} element={<Music/>}/>*/}
+                    {/*<Route path={"/"} element={<Setting/>}/>*/}
+                </Routes>
+            </div>
+
         </div>
     );
 }

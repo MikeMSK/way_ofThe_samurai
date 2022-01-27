@@ -9,13 +9,13 @@
     grid-gap: 5px;
     width: 1440px;
 }
-.app_wrapper img{
+
+.app_wrapper img {
     width: 100%;
 }
 
 .app_wrapper_content {
     grid-area: c;
-    padding: 10px;
     background: cornflowerblue;
 }
 

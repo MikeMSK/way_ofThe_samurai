@@ -3,17 +3,15 @@
     grid-template-columns: 2fr 10fr;
 }
 
-.dialogs_item {
-
+.dialogsItem {
+    text-decoration: none;
 }
 
-.dialogs_item .active {
+.dialogsItem .active {
     color: blue;
 }
 
-.dialog {
-    text-decoration: none;
-}
+
 
 .messages {
 

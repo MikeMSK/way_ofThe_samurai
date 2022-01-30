@@ -7,7 +7,8 @@ import {state} from "./Redux/state";
 
 ReactDOM.render(
     <BrowserRouter>
-        <App state={state}/>
+        <App profilePage={state.profilePage}
+             dialogsPage={state.dialogsPage}/>
     </BrowserRouter>,
     document.getElementById('root'));
 

@@ -4,13 +4,10 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile"
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {Routes, Route, Link} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
+import {RootStateType} from "./Redux/state";
 
-export type propsAppType = {
-    state: any
-}
-
-const App: React.FC<propsAppType> = (props) => {
+const App: React.FC<RootStateType> = (props) => {
 
     return (
         <div className={s.app_wrapper}>
@@ -18,10 +15,11 @@ const App: React.FC<propsAppType> = (props) => {
             <Navbar/>
             <div className={s.app_wrapper_content}>
                 <Routes>
-                    <Route path={"/profile"}
-                           element={<Profile state={props.state.profilePage}/>}/>
-                    <Route path={"/dialogs"}
-                           element={<Dialogs state={props.state.dialogsPage}/>}/>
+                    <Route path={"/profile/*"}
+                           element={<Profile posts={props.profilePage.posts}/>}/>
+                    <Route path={"/dialogs?/*"}
+                           element={<Dialogs dialogs={props.dialogsPage.dialogs}
+                                             messages={props.dialogsPage.messages}/>}/>
 
                     {/*<Route path={"/"} element={<News/>}/>*/}
                     {/*<Route path={"/"} element={<Music/>}/>*/}

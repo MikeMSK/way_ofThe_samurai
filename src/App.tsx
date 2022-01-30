@@ -6,37 +6,23 @@ import {Profile} from "./components/Profile/Profile"
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Routes, Route, Link} from "react-router-dom";
 
-type propsObjectDialogDataType = {
-    id: number,
-    name: string
-}
-type propsObjectMessagesDataType = {
-    id: number,
-    message: string
-}
-type propsObjectPostDataType = {
-    id: number,
-    message: string,
-    likesCount: number
-}
-
 export type propsAppType = {
-    dialogData: Array<propsObjectDialogDataType>
-    messagesData: Array<propsObjectMessagesDataType>
-    postData: Array<propsObjectPostDataType>
+    state: any
 }
 
-const App = (props: propsAppType) => {
+const App: React.FC<propsAppType> = (props) => {
+
     return (
         <div className={s.app_wrapper}>
             <Header/>
             <Navbar/>
             <div className={s.app_wrapper_content}>
                 <Routes>
-                    <Route path={"/profile"} element={<Profile/>}/>
-                    <Route path={"/dialogs"} element={<Dialogs dialogData={props.dialogData}
-                                                               messagesData={props.messagesData}
-                                                               postData={props.postData}/>}/>
+                    <Route path={"/profile"}
+                           element={<Profile state={props.state.profilePage}/>}/>
+                    <Route path={"/dialogs"}
+                           element={<Dialogs state={props.state.dialogsPage}/>}/>
+
                     {/*<Route path={"/"} element={<News/>}/>*/}
                     {/*<Route path={"/"} element={<Music/>}/>*/}
                     {/*<Route path={"/"} element={<Setting/>}/>*/}

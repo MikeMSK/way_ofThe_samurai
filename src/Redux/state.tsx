@@ -1,0 +1,47 @@
+export let state = {
+    profilePage: {
+        posts: [
+            {id: 1, message: "Hi, how are you?", likesCount: 5},
+            {id: 1, message: "I`am fine, thanks you", likesCount: 10},
+            {id: 1, message: "It`s cool", likesCount: 15},
+            {id: 1, message: "Yes", likesCount: 20},
+            {id: 1, message: "F you", likesCount: 25}
+        ],
+    },
+    dialogsPage: {
+        dialogs: [
+            {id: 1, name: "Misha"},
+            {id: 2, name: "Igor"},
+            {id: 3, name: "Sasha"},
+            {id: 4, name: "Artur"},
+            {id: 5, name: "Artyom"},
+        ],
+        messages: [
+            {id: 1, message: "Hi!"},
+            {id: 1, message: "How are you?"},
+            {id: 1, message: "Fine, thanks!"},
+            {id: 1, message: "Yo!"},
+            {id: 1, message: "Bye!"},
+        ],
+    }
+}
+
+
+// type propsObjectDialogsType = {
+//     id: number,
+//     name: string
+// }
+// export type propsObjectMessagesType = {
+//     id: number,
+//     message: string
+// }
+// export type propsObjectPostDataType = {
+//     id: number,
+//     message: string,
+//     likesCount: number
+// }
+// type propsStateType={
+//     dialogData: Array<any>
+//     messagesData: Array<any>
+//     postData: Array<any>
+// }

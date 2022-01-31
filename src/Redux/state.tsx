@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export type MessagesType = {
     id: number
     message: string
@@ -40,7 +42,7 @@ export let state: RootStateType = {
             {id: 1, name: "Misha"},
             {id: 2, name: "Igor"},
             {id: 3, name: "Sasha"},
-            {id: 4, name: "Artur"},
+            {id: 4, name: "Lex"},
             {id: 5, name: "Artyom"},
         ],
         messages: [
@@ -51,4 +53,23 @@ export let state: RootStateType = {
             {id: 1, message: "Bye!"},
         ],
     },
+}
+
+export let addPost = (postMessage: string) => {
+    const newPost: PostType = {
+        id: new Date().getTime(), //??????
+        message: postMessage,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state)
+}
+export let addMessage = (message: string) => {
+    const newMessage: MessagesType = {
+        id: new Date().getTime(), //??????
+        message: message,
+
+    }
+    state.dialogsPage.messages.push(newMessage);
+    rerenderEntireTree(state)
 }

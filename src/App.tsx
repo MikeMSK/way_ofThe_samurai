@@ -5,13 +5,14 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile"
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Routes, Route} from "react-router-dom";
-import {addMessage, DialogsPageType, ProfilePageType} from "./Redux/state";
+import {addMessage, DialogsPageType, ProfilePageType, updateNewPostText} from "./Redux/state";
 
 type AppPropsType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    addPost: (text: string) => void
+    addPost: () => void
     addMessage: (text: string) => void
+    updateNewPostText: (text: string) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
@@ -23,12 +24,15 @@ const App: React.FC<AppPropsType> = (props) => {
             <div className={s.app_wrapper_content}>
                 <Routes>
                     <Route path={"/profile/*"}
-                           element={<Profile posts={props.profilePage.posts}
-                                             addPost={props.addPost}/>}/>
+                           element={<Profile posts={props.profilePage}
+                                             addPost={props.addPost}
+                                             updateNewPostText={props.updateNewPostText}/>}
+                    />
                     <Route path={"/dialogs/*"}
                            element={<Dialogs dialogs={props.dialogsPage.dialogs}
                                              messages={props.dialogsPage.messages}
                                              addMessage={props.addMessage}/>}/>
+
                     {/*<Route path={"/"} element={<News/>}/>*/}
                     {/*<Route path={"/"} element={<Music/>}/>*/}
                     {/*<Route path={"/"} element={<Setting/>}/>*/}

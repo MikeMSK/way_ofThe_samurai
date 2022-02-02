@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-02T19:33:45.286Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36" etag="o9mg6e-6ZOiwtYRmaLpo" version="16.5.2" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-02T19:33:56.226Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36" etag="wh0SEWJZyg5fhgoG65u9" version="16.5.2" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="472" dy="905" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -80,7 +80,7 @@
         <mxCell id="k4PQZsG8BT_clB1h0zz4-32" value="Message" style="rounded=1;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="170" y="180" width="80" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="bBJOlrab5barN8a6u347-0" value="state" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="bBJOlrab5barN8a6u347-0" value="state" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="120" y="25" width="120" height="20" as="geometry" />
         </mxCell>
       </root>

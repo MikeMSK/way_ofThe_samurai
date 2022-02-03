@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import {addMessage, addPost, updateNewPostText, subscribe, state} from "./Redux/state";
+import {addMessage, addPost, updateNewPostText, subscribe, state, updateNewMessageText} from "./Redux/state";
 
 export let rerenderEntireTree = () => {
     ReactDOM.render(
@@ -13,6 +13,7 @@ export let rerenderEntireTree = () => {
                  addPost={addPost}
                  addMessage={addMessage}
                  updateNewPostText={updateNewPostText}
+                 updateNewMessageText={updateNewMessageText}
             />
         </BrowserRouter>,
         document.getElementById('root'));

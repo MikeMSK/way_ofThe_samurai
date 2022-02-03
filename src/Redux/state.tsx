@@ -1,8 +1,3 @@
-
-let onChange=()=>{
-    console.log("yyy")
-}
-
 export type MessagesType = {
     id: number
     message: string
@@ -23,8 +18,8 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageText: string
 }
-export type SidebarType = {}
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -57,7 +52,11 @@ export let state: RootStateType = {
             {id: 1, message: "Yo!"},
             {id: 1, message: "Bye!"},
         ],
-    },
+        newMessageText: ""
+    }
+}
+let onChange = () => {
+    console.log("yyy")
 }
 
 export const addPost = () => {
@@ -68,20 +67,27 @@ export const addPost = () => {
     }
     state.profilePage.posts.push(newPost);
     onChange()
+    state.profilePage.newPostText = ""
 }
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
     onChange()
 }
-export const addMessage = (message: string) => {
+
+export const addMessage = () => {
     const newMessage: MessagesType = {
         id: new Date().getTime(), //??????
-        message: message,
+        message: state.dialogsPage.newMessageText
     }
     state.dialogsPage.messages.push(newMessage);
     onChange()
+    state.dialogsPage.newMessageText = ""
+}
+export const updateNewMessageText = (newText: string) => {
+    state.dialogsPage.newMessageText = newText;
+    onChange()
 }
 
-export const subscribe=(observer:()=>void)=>{
+export const subscribe = (observer: () => void) => {
     onChange = observer;
 }

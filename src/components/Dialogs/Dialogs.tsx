@@ -13,13 +13,17 @@ type DialogsPropsType = {
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     let dialogsElements = props.dialogs.map(
-        (d: DialogsType) => <DialogItem name={d.name}
-                                        id={d.id}/>)
+        (d: DialogsType) => <DialogItem key={d.id}
+                                        id={d.id}
+                                        name={d.name}
+        />)
     let messagesElements = props.messages.map(
-        (m: MessagesType) => <Message message={m.message}
-                                      id={m.id}/>)
+        (m: MessagesType) => <Message key={m.id}
+                                      id={m.id}
+                                      message={m.message}/>)
 
     let sendMessage = React.createRef<HTMLTextAreaElement>()
+
     let addMessage = () => {
         if (sendMessage.current) {
             props.addMessage(sendMessage.current.value)

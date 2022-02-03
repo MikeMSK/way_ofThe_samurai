@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile"
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Routes, Route} from "react-router-dom";
-import {addMessage, DialogsPageType, ProfilePageType, updateNewPostText} from "./Redux/state";
+import {DialogsPageType, ProfilePageType} from "./Redux/state";
 
 type AppPropsType = {
     profilePage: ProfilePageType

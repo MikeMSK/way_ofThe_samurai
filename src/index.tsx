@@ -1,5 +1,21 @@
 import React from 'react';
-import {rerenderEntireTree} from "./render";
-import {state} from "./Redux/state";
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import {BrowserRouter} from "react-router-dom";
+import {addMessage, addPost, updateNewPostText, subscribe, state} from "./Redux/state";
 
-rerenderEntireTree(state)
+export let rerenderEntireTree = () => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App profilePage={state.profilePage}
+                 dialogsPage={state.dialogsPage}
+                 addPost={addPost}
+                 addMessage={addMessage}
+                 updateNewPostText={updateNewPostText}
+            />
+        </BrowserRouter>,
+        document.getElementById('root'));
+};
+rerenderEntireTree();
+subscribe(rerenderEntireTree);

@@ -5,19 +5,14 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile"
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Routes, Route} from "react-router-dom";
-import {DialogsPageType, ProfilePageType, updateNewMessageText} from "./Redux/state";
+import {StoreType} from "./Redux/state";
 
 type AppPropsType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    addPost: () => void
-    addMessage: () => void
-    updateNewPostText: (text: string) => void
-    updateNewMessageText:(text:string)=>void
+    store: StoreType
+    dispatch: (action: any) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
-
     return (
         <div className={s.app_wrapper}>
             <Header/>
@@ -25,18 +20,11 @@ const App: React.FC<AppPropsType> = (props) => {
             <div className={s.app_wrapper_content}>
                 <Routes>
                     <Route path={"/profile/*"}
-                           element={<Profile posts={props.profilePage}
-                                             newPostText={props.profilePage.newPostText}
-                                             addPost={props.addPost}
-                                             updateNewPostText={props.updateNewPostText}/>}
-                    />
+                           element={<Profile profilePage={props.store.getState().profilePage}
+                                             dispatch={props.dispatch}/>}/>
                     <Route path={"/dialogs/*"}
-                           element={<Dialogs dialogs={props.dialogsPage.dialogs}
-                                             messages={props.dialogsPage.messages}
-                                             newMessageText={props.dialogsPage.newMessageText}
-                                             addMessage={props.addMessage}
-                                             updateNewMessageText={props.updateNewMessageText}
-                           />}/>
+                           element={<Dialogs dialogsPage={props.store.getState().dialogsPage}
+                                             dispatch={props.dispatch}/>}/>
 
                     {/*<Route path={"/"} element={<News/>}/>*/}
                     {/*<Route path={"/"} element={<Music/>}/>*/}
@@ -48,5 +36,10 @@ const App: React.FC<AppPropsType> = (props) => {
     );
 }
 export default App;
+
+
+// dialogs={props.store.getState().dialogsPage.dialogs}
+//               messages={props.store.getState().dialogsPage.messages}
+//               newMessageText={props.store.getState().dialogsPage.newMessageText}
 
 

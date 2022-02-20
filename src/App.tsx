@@ -5,11 +5,11 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile"
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Routes, Route} from "react-router-dom";
-import {StoreType} from "./Redux/state";
+import {ActionTypes, StoreType} from "./Redux/state";
 
 type AppPropsType = {
     store: StoreType
-    dispatch: (action: any) => void
+    dispatch: (action: ActionTypes) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {

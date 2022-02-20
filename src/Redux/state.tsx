@@ -1,3 +1,5 @@
+import React from "react";
+//state
 export type MessagesType = {
     id: number
     message: string
@@ -24,13 +26,53 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
-
+//store
 export type StoreType = {
     _state: RootStateType
     _onChange: () => void
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
-    dispatch: (action: any) => void
+    dispatch: (action: AddPostActionType
+        | UpdatePostActionType
+        | AddMessageActionType
+        | UpdateMessageActionType) => void
+}
+//dispatch
+type AddPostActionType = {
+    type: "ADD-POST",
+    postText: string
+}
+type UpdatePostActionType = {
+    type: "UPDATE-NEW-POST",
+    newText: string
+}
+type AddMessageActionType = {
+    type: "ADD-MESSAGE",
+    messageText: string
+}
+type UpdateMessageActionType = {
+    type: "UPDATE-NEW-MESSAGE",
+    newMessageText: string
+}
+export type ActionTypes = AddPostActionType | UpdatePostActionType | AddMessageActionType | UpdateMessageActionType
+// action creator
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST = "UPDATE-NEW-POST";
+const ADD_MESSAGE = "ADD-MESSAGE";
+const UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE";
+// AC profile
+export const addPostAС = (postText: string): AddPostActionType => {
+    return {type: ADD_POST, postText: postText}
+}
+export const updateNewPostTextAС = (newText: string): UpdatePostActionType => {
+    return {type: UPDATE_NEW_POST, newText: newText}
+}
+// AC dialogs
+export const addMessageAС = (messageText: string): AddMessageActionType => {
+    return {type: ADD_MESSAGE, messageText: messageText}
+}
+export const updateNewMessageTextAС = (newMessageText: string): UpdateMessageActionType => {
+    return {type: UPDATE_NEW_MESSAGE, newMessageText: newMessageText}
 }
 
 export const store: StoreType = {
@@ -78,17 +120,16 @@ export const store: StoreType = {
         if (action.type === "ADD-POST") {
             const newPost: PostType = {
                 id: new Date().getTime(),
-                message: this._state.profilePage.newPostText,
+                message: action.postText,
                 likesCount: 0
             }
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = ""
             this._onChange()
-        }
-        else if (action.type === "ADD-MESSAGE") {
+        } else if (action.type === "ADD-MESSAGE") {
             const newMessage: MessagesType = {
                 id: new Date().getTime(),
-                message: this._state.dialogsPage.newMessageText
+                message: action.messageText
             }
             this._state.dialogsPage.messages.push(newMessage);
             this._state.dialogsPage.newMessageText = ""
@@ -97,7 +138,7 @@ export const store: StoreType = {
             this._state.profilePage.newPostText = action.newText;
             this._onChange()
         } else if (action.type === "UPDATE-NEW-MESSAGE") {
-            this._state.dialogsPage.newMessageText = action.newText;
+            this._state.dialogsPage.newMessageText = action.newMessageText;
             this._onChange()
         }
     }

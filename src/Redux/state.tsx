@@ -1,4 +1,6 @@
 import React from "react";
+import profileReducer from "./profile_reducer";
+import dialogsReducer from "./dialogs_reducer";
 //state
 export type MessagesType = {
     id: number
@@ -104,7 +106,6 @@ export const store: StoreType = {
     _onChange() {
         console.log("state changed")
     },
-
     getState() {
         return this._state
     },
@@ -113,39 +114,12 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            const newPost: PostType = {
-                id: new Date().getTime(),
-                message: action.postText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = ""
-            this._onChange()
-        } else if (action.type === "ADD-MESSAGE") {
-            const newMessage: MessagesType = {
-                id: new Date().getTime(),
-                message: action.messageText
-            }
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessageText = ""
-            this._onChange()
-        } else if (action.type === "UPDATE-NEW-POST") {
-            this._state.profilePage.newPostText = action.newPostText;
-            this._onChange()
-        } else if (action.type === "UPDATE-NEW-MESSAGE") {
-            this._state.dialogsPage.newMessageText = action.newMessageText;
-            this._onChange()
-        }
+        this._state.profilePage = profileReducer(action, this._state.profilePage);
+        this._state.dialogsPage = dialogsReducer(action, this._state.dialogsPage);
+        this._onChange();
     }
+
 }
-
-
-
-
-
-
-
 
 
 // type AddPostActionType = ReturnType<typeof addPostAС>

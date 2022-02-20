@@ -32,47 +32,43 @@ export type StoreType = {
     _onChange: () => void
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
-    dispatch: (action: AddPostActionType
-        | UpdatePostActionType
-        | AddMessageActionType
-        | UpdateMessageActionType) => void
+    dispatch: (action: ActionTypes) => void
 }
 //dispatch
-type AddPostActionType = {
-    type: "ADD-POST",
-    postText: string
-}
-type UpdatePostActionType = {
-    type: "UPDATE-NEW-POST",
-    newText: string
-}
-type AddMessageActionType = {
-    type: "ADD-MESSAGE",
-    messageText: string
-}
-type UpdateMessageActionType = {
-    type: "UPDATE-NEW-MESSAGE",
-    newMessageText: string
-}
-export type ActionTypes = AddPostActionType | UpdatePostActionType | AddMessageActionType | UpdateMessageActionType
+export type ActionTypes = ReturnType<typeof addPostAС>
+    | ReturnType<typeof updateNewPostTextAС>
+    | ReturnType<typeof addMessageAС>
+    | ReturnType<typeof updateNewMessageTextAС>
 // action creator
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST = "UPDATE-NEW-POST";
 const ADD_MESSAGE = "ADD-MESSAGE";
 const UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE";
 // AC profile
-export const addPostAС = (postText: string): AddPostActionType => {
-    return {type: ADD_POST, postText: postText}
+export const addPostAС = (postText: string) => {
+    return {
+        type: ADD_POST,
+        postText: postText
+    } as const
 }
-export const updateNewPostTextAС = (newText: string): UpdatePostActionType => {
-    return {type: UPDATE_NEW_POST, newText: newText}
+export const updateNewPostTextAС = (newPostText: string) => {
+    return {
+        type: UPDATE_NEW_POST,
+        newPostText: newPostText
+    } as const
 }
 // AC dialogs
-export const addMessageAС = (messageText: string): AddMessageActionType => {
-    return {type: ADD_MESSAGE, messageText: messageText}
+export const addMessageAС = (messageText: string) => {
+    return {
+        type: ADD_MESSAGE,
+        messageText: messageText
+    } as const
 }
-export const updateNewMessageTextAС = (newMessageText: string): UpdateMessageActionType => {
-    return {type: UPDATE_NEW_MESSAGE, newMessageText: newMessageText}
+export const updateNewMessageTextAС = (newMessageText: string) => {
+    return {
+        type: UPDATE_NEW_MESSAGE,
+        newMessageText: newMessageText
+    } as const
 }
 
 export const store: StoreType = {
@@ -135,7 +131,7 @@ export const store: StoreType = {
             this._state.dialogsPage.newMessageText = ""
             this._onChange()
         } else if (action.type === "UPDATE-NEW-POST") {
-            this._state.profilePage.newPostText = action.newText;
+            this._state.profilePage.newPostText = action.newPostText;
             this._onChange()
         } else if (action.type === "UPDATE-NEW-MESSAGE") {
             this._state.dialogsPage.newMessageText = action.newMessageText;
@@ -144,6 +140,18 @@ export const store: StoreType = {
     }
 }
 
+
+
+
+
+
+
+
+
+// type AddPostActionType = ReturnType<typeof addPostAС>
+// type UpdatePostActionType = ReturnType<typeof updateNewPostTextAС>
+// type AddMessageActionType = ReturnType<typeof addMessageAС>
+// type UpdateMessageActionType = ReturnType<typeof updateNewMessageTextAС>
 
 // addPost() {
 //     const newPost: PostType = {

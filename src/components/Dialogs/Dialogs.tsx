@@ -41,9 +41,12 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
                 </div>
                 <div className={s.messages}>
                     {messagesElements}
-                    <textarea onChange={onMessageChange}
+                    <textarea placeholder={"Enter your message"}
+                              onChange={onMessageChange}
                               value={props.dialogsPage.newMessageText}/>
-                    <button onClick={addMessage}>send</button>
+                    <button onClick={addMessage}>
+                        send
+                    </button>
                 </div>
             </div>
         );

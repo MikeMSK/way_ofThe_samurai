@@ -13,7 +13,7 @@ type DialogsPropsType = {
 
 export const Dialogs: FC<DialogsPropsType> = (props) => {
 
-        const dialogsElements = props.dialogsPage.dialogs.map(
+        const dialogsElements = props.dialogsPage.dialogs.map( 
             (d: DialogsType) => <DialogItem key={d.id}
                                             id={d.id}
                                             name={d.name}/>)

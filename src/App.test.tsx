@@ -4,7 +4,7 @@ import App from './App';
 import {store} from "./Redux/redux_store";
 
 test('renders learn react link', () => {
-    render(<App store={store}/>);
+    render(<App/>);
     const linkElement = screen.getByText(/learn react/i);
     expect(linkElement).toBeInTheDocument();
 });

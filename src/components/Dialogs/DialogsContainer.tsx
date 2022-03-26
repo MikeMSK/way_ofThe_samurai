@@ -2,25 +2,30 @@ import React, {FC} from 'react';
 import {StoreType,} from "../../Redux/store";
 import {addMessageActionСreator, updateNewMessageTextActionСreator} from "../../Redux/dialogs_reducer";
 import {Dialogs} from "./Dialogs";
+import {StoreContext} from "../../StoreContext"
 
+// type DialogsPropsType = {
+//     store: StoreType
+// }FC<DialogsPropsType>
 
-type DialogsPropsType = {
-    store: StoreType
-}
+export const DialogsContainer = () => {
 
-export const DialogsContainer: FC<DialogsPropsType> = (props) => {
+    return <StoreContext.Consumer>
+        {(store) => {
+            const state = store.getState()
+            const addMessage = () => {
+                const action = addMessageActionСreator(state.dialogsPage.newMessageText)
+                store.dispatch(action)
+            }
+            const onMessageChange = (text: string) => {
+                const action = updateNewMessageTextActionСreator(text)
+                store.dispatch(action)
+            }
 
-        const state = props.store.getState()
-
-        const addMessage = () => {
-            props.store.dispatch(addMessageActionСreator(state.dialogsPage.newMessageText))
+            return <Dialogs dialogsPage={state.dialogsPage}
+                            addMessage={addMessage}
+                            updateNewPostText={onMessageChange}/>
         }
-        const onMessageChange = (text: string) => {
-            props.store.dispatch(updateNewMessageTextActionСreator(text))
         }
-
-        return <Dialogs dialogsPage={state.dialogsPage}
-                        addMessage={addMessage}
-                        updateNewPostText={onMessageChange}/>
-    }
-;
+    </StoreContext.Consumer>
+};

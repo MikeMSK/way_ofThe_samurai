@@ -7,11 +7,11 @@ import {Routes, Route} from "react-router-dom";
 import {StoreType} from "./Redux/store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
-type AppPropsType = {
-    store: StoreType
-}
+// type AppPropsType = {
+//     store: StoreType
+// }
 
-const App: FC<AppPropsType> = (props) => {
+const App = () => {
     return (
         <div className={s.app_wrapper}>
             <Header/>
@@ -19,10 +19,10 @@ const App: FC<AppPropsType> = (props) => {
             <div className={s.app_wrapper_content}>
                 <Routes>
                     <Route path={"/profile/*"}
-                           element={<Profile store={props.store}/>}/>
+                           element={<Profile />}/>
 
                     <Route path={"/dialogs/*"}
-                           element={<DialogsContainer store={props.store}/>}/>
+                           element={<DialogsContainer/>}/>
 
                     {/*<Route path={"/"} element={<News/>}/>*/}
                     {/*<Route path={"/"} element={<Music/>}/>*/}

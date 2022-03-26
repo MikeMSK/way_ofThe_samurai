@@ -1,19 +1,18 @@
 import React, {ChangeEvent, FC} from 'react';
 import s from "./MyPosts.module.css"
 import {Post} from "./Post/Post";
-import {ActionTypes, PostType,} from "../../../Redux/store"
-import {addPostActionСreator, updateNewPostTextActionСreator} from "../../../Redux/profile_reducer";
+import {PostType, ProfilePageType} from "../../../Redux/profile_reducer";
+
 
 type MyPostsPropsType = {
-    posts: Array<PostType>
-    newPostText: string
+    profilePage: ProfilePageType
     addPost: () => void
     updateNewPostText: (text: string) => void
 }
 //_______presentation component____________
 export const MyPosts: FC<MyPostsPropsType> = (props) => {
 
-    const postsElements = props.posts.map(
+    const postsElements = props.profilePage.posts.map(
         (p: PostType) => <Post key={p.id}
                                id={p.id}
                                message={p.message}
@@ -32,7 +31,7 @@ export const MyPosts: FC<MyPostsPropsType> = (props) => {
                 <div>
                     <textarea placeholder={"Enter your post"}
                               onChange={onPostChange}
-                              value={props.newPostText}/>
+                              value={props.profilePage.newPostText}/>
                 </div>
                 <button onClick={onAddPost}>
                     add

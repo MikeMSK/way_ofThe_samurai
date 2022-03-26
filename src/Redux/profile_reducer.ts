@@ -1,7 +1,31 @@
-import {ActionTypes, PostType, ProfilePageType} from "./store";
+import React from "react";
 
 
-const initialState = {
+//----------------TYPE--------------
+export type PostType = {
+    id: number,
+    message: string,
+    likesCount: number
+}
+export type ProfilePageType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+export type ActionTypesPost =
+    ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof updateNewPostTextActionCreator>
+
+//----------------ActionCreator-----------
+export const addPostActionCreator = () => ({
+    type: "ADD-POST",
+}) as const
+export const updateNewPostTextActionCreator = (newPostText: string) => ({
+    type: "UPDATE_NEW_POST",
+    newPostText
+}) as const
+
+//------------------initialState-----------
+const initialState: ProfilePageType = {
     posts: [
         {id: 1, message: "Hi, how are you?", likesCount: 5},
         {id: 2, message: "I`am fine, thanks you", likesCount: 10},
@@ -12,22 +36,14 @@ const initialState = {
     newPostText: ""
 }
 
-export const addPostActionСreator = (postText: string) => ({
-    type: "ADD-POST",
-    postText
-}) as const
-export const updateNewPostTextActionСreator = (newPostText: string) => ({
-    type: "UPDATE_NEW_POST",
-    newPostText
-}) as const
-
-const profileReducer = (state:ProfilePageType = initialState,
-                        action: ActionTypes) => {
+//-------------------profileReducer---------------------
+const profileReducer = (state: ProfilePageType = initialState,
+                        action: ActionTypesPost): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST":
             const newPost: PostType = {
                 id: new Date().getTime(),
-                message: action.postText,
+                message: state.newPostText,
                 likesCount: 0
             };
             state.posts.push(newPost);

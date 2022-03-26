@@ -2,18 +2,18 @@ import React, {ChangeEvent, FC} from 'react';
 import s from "./Dialogs.module.css"
 import {Message} from "./Message/Message";
 import {DialogItem} from "./DialogItem/DialogItem";
-import {DialogsPageType, DialogsType, MessagesType,} from "../../Redux/store";
+import {DialogsPageType, DialogsType, MessagesType} from "../../Redux/dialogs_reducer";
 
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
     addMessage: () => void
-    updateNewPostText: (text: string) => void
+    updateNewMessageText: (text: string) => void
 }
 
 export const Dialogs: FC<DialogsPropsType> = (props) => {
 
-        const dialogsElements = props.dialogsPage.dialogs.map( 
+        const dialogsElements = props.dialogsPage.dialogs.map(
             (d: DialogsType) => <DialogItem key={d.id}
                                             id={d.id}
                                             name={d.name}/>)
@@ -26,7 +26,7 @@ export const Dialogs: FC<DialogsPropsType> = (props) => {
             props.addMessage()
         }
         const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-            props.updateNewPostText(e.currentTarget.value)
+            props.updateNewMessageText(e.currentTarget.value)
         }
 
         return (

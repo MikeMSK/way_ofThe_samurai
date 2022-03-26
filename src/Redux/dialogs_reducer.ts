@@ -1,7 +1,31 @@
-import {ActionTypes, DialogsPageType, MessagesType} from "./store";
+//----------------TYPE--------------
+export type MessagesType = {
+    id: number
+    message: string
+}
+export type DialogsType = {
+    id: number,
+    name: string
+}
+export type DialogsPageType = {
+    dialogs: Array<DialogsType>
+    messages: Array<MessagesType>
+    newMessageText: string
+}
+export type ActionTypesMessage = ReturnType<typeof addMessageActionCreator>
+    | ReturnType<typeof updateNewMessageTextActionCreator>
 
+//----------------ActionCreator-----------
+export const addMessageActionCreator = () => ({
+    type: "ADD_MESSAGE",
+}) as const
+export const updateNewMessageTextActionCreator = (newMessageText: string) => ({
+    type: "UPDATE_NEW_MESSAGE",
+    newMessageText
+}) as const
 
-const initialState = {
+//------------------initialState-----------
+const initialState: DialogsPageType = {
     dialogs: [
         {id: 1, name: "Misha"},
         {id: 2, name: "Igor"},
@@ -19,22 +43,14 @@ const initialState = {
     newMessageText: ""
 }
 
-export const addMessageActionСreator = (messageText: string) => ({
-    type: "ADD_MESSAGE",
-    messageText
-}) as const
-export const updateNewMessageTextActionСreator = (newMessageText: string) => ({
-    type: "UPDATE_NEW_MESSAGE",
-    newMessageText
-}) as const
-
+//-------------------dialogsReducer---------------------
 const dialogsReducer = (state: DialogsPageType = initialState,
-                        action: ActionTypes) => {
+                        action: ActionTypesMessage): DialogsPageType => {
     switch (action.type) {
         case "ADD_MESSAGE":
             const newMessage: MessagesType = {
                 id: new Date().getTime(),
-                message: action.messageText
+                message: state.newMessageText
             }
             state.messages.push(newMessage);
             state.newMessageText = ""
@@ -46,4 +62,4 @@ const dialogsReducer = (state: DialogsPageType = initialState,
             return state
     }
 }
-export default dialogsReducer;
+export default dialogsReducer

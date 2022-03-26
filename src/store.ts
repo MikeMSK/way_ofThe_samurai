@@ -1,46 +1,45 @@
-import profileReducer, {addPostActionСreator, updateNewPostTextActionСreator} from "./profile_reducer";
-import dialogsReducer, {addMessageActionСreator, updateNewMessageTextActionСreator} from "./dialogs_reducer";
+import React from "react";
 //state
-export type MessagesType = {
-    id: number
-    message: string
-}
-export type DialogsType = {
-    id: number,
-    name: string
-}
-export type PostType = {
-    id: number,
-    message: string,
-    likesCount: number
-}
-export type ProfilePageType = {
-    posts: Array<PostType>
-    newPostText: string
-}
-export type DialogsPageType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessagesType>
-    newMessageText: string
-}
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-}
+// export type MessagesType = {
+//     id: number
+//     message: string
+// }
+// export type DialogsType = {
+//     id: number,
+//     name: string
+// }
+// export type PostType = {
+//     id: number,
+//     message: string,
+//     likesCount: number
+// }
+// export type ProfilePageType = {
+//     posts: Array<PostType>
+//     newPostText: string
+// }
+// export type DialogsPageType = {
+//     dialogs: Array<DialogsType>
+//     messages: Array<MessagesType>
+//     newMessageText: string
+// }
+// export type RootStateType = {
+//     profilePage: ProfilePageType
+//     dialogsPage: DialogsPageType
+// }
 //store
-export type StoreType = {
-    // _state: RootStateType
-    // _onChange: () => void
-    getState: () => RootStateType
-    subscribe: (callback: () => void) => void
-    dispatch: (action: ActionTypes) => void
-}
-export type ActionTypes = ReturnType<typeof addMessageActionСreator>
-    | ReturnType<typeof updateNewMessageTextActionСreator>
-    | ReturnType<typeof addPostActionСreator>
-    | ReturnType<typeof updateNewPostTextActionСreator>
+// export type StoreType = {
+//     // _state: RootStateType
+//     // _onChange: () => void
+//     getState: () => RootStateType
+//     subscribe: (callback: () => void) => void
+//     dispatch: (action: ActionTypes) => void
+//}
+// export type ActionTypes = ReturnType<typeof addMessageActionСreator>
+//     | ReturnType<typeof updateNewMessageTextActionСreator>
+//     | ReturnType<typeof addPostActionСreator>
+//     | ReturnType<typeof updateNewPostTextActionСreator>
 
-// export const store: StoreType = {
+// export const store: any = {
 //     _state: {
 //         profilePage: {
 //             posts: [
@@ -76,10 +75,10 @@ export type ActionTypes = ReturnType<typeof addMessageActionСreator>
 //     getState() {
 //         return this._state
 //     },
-//     subscribe(observer) {
+//     subscribe(observer: any) {
 //         this._onChange = observer;
 //     },
-//     dispatch(action) {
+//     dispatch(action: any) {
 //         this._state.profilePage = profileReducer(this._state.profilePage, action);
 //         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
 //

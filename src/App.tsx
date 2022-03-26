@@ -1,15 +1,10 @@
-import React, {FC} from 'react';
+import React from 'react';
 import s from "./App.module.css";
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile"
 import {Routes, Route} from "react-router-dom";
-import {StoreType} from "./Redux/store";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-
-// type AppPropsType = {
-//     store: StoreType
-// }
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 const App = () => {
     return (
@@ -19,7 +14,7 @@ const App = () => {
             <div className={s.app_wrapper_content}>
                 <Routes>
                     <Route path={"/profile/*"}
-                           element={<Profile />}/>
+                           element={<Profile/>}/>
 
                     <Route path={"/dialogs/*"}
                            element={<DialogsContainer/>}/>

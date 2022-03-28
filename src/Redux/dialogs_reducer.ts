@@ -1,10 +1,12 @@
+import {v1} from "uuid";
 //----------------TYPE--------------
+
 export type MessagesType = {
-    id: number
+    id: string
     message: string
 }
 export type DialogsType = {
-    id: number,
+    id: string,
     name: string
 }
 export type DialogsPageType = {
@@ -27,18 +29,18 @@ export const updateNewMessageTextActionCreator = (newMessageText: string) => ({
 //------------------initialState-----------
 const initialState: DialogsPageType = {
     dialogs: [
-        {id: 1, name: "Misha"},
-        {id: 2, name: "Igor"},
-        {id: 3, name: "Sasha"},
-        {id: 4, name: "Lex"},
-        {id: 5, name: "Artyom"},
+        {id: v1(), name: "Misha"},
+        {id: v1(), name: "Igor"},
+        {id: v1(), name: "Sasha"},
+        {id: v1(), name: "Lex"},
+        {id: v1(), name: "Artyom"},
     ],
     messages: [
-        {id: 1, message: "Hi!"},
-        {id: 2, message: "How are you?"},
-        {id: 3, message: "Fine, thanks!"},
-        {id: 4, message: "Yo!"},
-        {id: 5, message: "Bye!"},
+        {id: v1(), message: "Hi!"},
+        {id: v1(), message: "How are you?"},
+        {id: v1(), message: "Fine, thanks!"},
+        {id: v1(), message: "Yo!"},
+        {id: v1(), message: "Bye!"},
     ],
     newMessageText: ""
 }
@@ -46,18 +48,19 @@ const initialState: DialogsPageType = {
 //-------------------dialogsReducer---------------------
 const dialogsReducer = (state: DialogsPageType = initialState,
                         action: ActionTypesMessage): DialogsPageType => {
+
     switch (action.type) {
         case "ADD_MESSAGE":
-            const newMessage: MessagesType = {
-                id: new Date().getTime(),
-                message: state.newMessageText
+            return {
+                ...state,
+                messages: [...state.messages, {
+                    id: v1(),
+                    message: state.newMessageText
+                }],
+                newMessageText: "",
             }
-            state.messages.push(newMessage);
-            state.newMessageText = ""
-            return state
         case "UPDATE_NEW_MESSAGE":
-            state.newMessageText = action.newMessageText;
-            return state;
+            return {...state, newMessageText: action.newMessageText};
         default:
             return state
     }

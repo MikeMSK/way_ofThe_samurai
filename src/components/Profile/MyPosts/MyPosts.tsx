@@ -11,7 +11,6 @@ type MyPostsPropsType = {
 }
 //_______presentation component____________
 export const MyPosts: FC<MyPostsPropsType> = (props) => {
-
     const postsElements = props.profilePage.posts.map(
         (p: PostType) => <Post key={p.id}
                                id={p.id}

@@ -5,10 +5,12 @@ import {PostType} from "../../../../Redux/profile_reducer";
 export const Post: React.FC<PostType> = (props) => {
     return (
         <div className={s.item}>
-            <img src="https://www.blexar.com/avatar.png" alt="img"/>
+            <img src="https://www.blexar.com/avatar.png"
+                 alt="img"/>
             {props.message}
             <div>
-                <span>like</span> {props.likesCount}
+                <span>like</span>
+                {props.likesCount}
             </div>
         </div>
     );

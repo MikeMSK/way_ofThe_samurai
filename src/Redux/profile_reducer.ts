@@ -1,9 +1,8 @@
-import React from "react";
-
+import {v1} from "uuid";
 
 //----------------TYPE--------------
 export type PostType = {
-    id: number,
+    id: string,
     message: string,
     likesCount: number
 }
@@ -19,19 +18,19 @@ export type ActionTypesPost =
 export const addPostActionCreator = () => ({
     type: "ADD-POST",
 }) as const
-export const updateNewPostTextActionCreator = (newPostText: string) => ({
+export const updateNewPostTextActionCreator = (newText: string) => ({
     type: "UPDATE_NEW_POST",
-    newPostText
+    newText
 }) as const
 
 //------------------initialState-----------
 const initialState: ProfilePageType = {
     posts: [
-        {id: 1, message: "Hi, how are you?", likesCount: 5},
-        {id: 2, message: "I`am fine, thanks you", likesCount: 10},
-        {id: 3, message: "It`s cool", likesCount: 15},
-        {id: 4, message: "Yes", likesCount: 20},
-        {id: 5, message: "F you", likesCount: 25}
+        {id: v1(), message: "Hi, how are you?", likesCount: 5},
+        {id: v1(), message: "I`am fine, thanks you", likesCount: 10},
+        {id: v1(), message: "It`s cool", likesCount: 15},
+        {id: v1(), message: "Yes", likesCount: 20},
+        {id: v1(), message: "F you", likesCount: 25}
     ],
     newPostText: ""
 }
@@ -39,22 +38,23 @@ const initialState: ProfilePageType = {
 //-------------------profileReducer---------------------
 const profileReducer = (state: ProfilePageType = initialState,
                         action: ActionTypesPost): ProfilePageType => {
+
     switch (action.type) {
         case "ADD-POST":
-            const newPost: PostType = {
-                id: new Date().getTime(),
-                message: state.newPostText,
-                likesCount: 0
+            return {
+                ...state,
+                posts: [...state.posts, {
+                    id: v1(),
+                    message: state.newPostText,
+                    likesCount: 0
+                }],
+                newPostText: ""
             };
-            state.posts.push(newPost);
-            state.newPostText = "";
-            return state;
+
         case "UPDATE_NEW_POST":
-            state.newPostText = action.newPostText;
-            return state;
+            return {...state, newPostText: action.newText}
         default:
             return state;
-
     }
 }
 export default profileReducer;

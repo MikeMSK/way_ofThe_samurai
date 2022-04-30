@@ -6,8 +6,6 @@ import {Profile} from "./components/Profile/Profile"
 import {Routes, Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
-import MusicContainer from "./components/Music/MusicContainer";
-import SettingContainer from "./components/Setting/SettingContainer";
 
 const App = () => {
     return (

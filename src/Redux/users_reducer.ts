@@ -1,17 +1,22 @@
-import {v1} from "uuid";
 //----------------TYPE--------------
 
 export type LocationType = {
     city: string,
     country: string
 }
+type photosType = {
+    large: any
+    small: any
+}
 export type UsersType = {
+    name: string
     id: string,
     followed: boolean,
     fullName: string,
     status: string,
     location: LocationType
     photoUrl: string
+    photos: photosType
 }
 export type UsersPageType = {
     users: UsersType[]
@@ -38,32 +43,7 @@ export const setUsersAC = (users: UsersType[]) => ({
 
 //------------------initialState-----------
 const initialState: UsersPageType = {
-    users: [
-        // {
-        //     id: v1(),
-        //     followed: true,
-        //     fullName: "Misha",
-        //     status: "I am a boss",
-        //     location: {city: "Minsk", country: "Belarus"},
-        //     photoUrl: "https://cdn.costumewall.com/wp-content/uploads/2018/10/mr-clean.jpg"
-        // },
-        // {
-        //     id: v1(),
-        //     followed: false,
-        //     fullName: "Igor",
-        //     status: "I am a teacher",
-        //     location: {city: "Kiev", country: "Ukraine"},
-        //     photoUrl: "https://cdn.costumewall.com/wp-content/uploads/2018/10/mr-clean.jpg"
-        // },
-        // {
-        //     id: v1(),
-        //     followed: true,
-        //     fullName: "Sasha",
-        //     status: "I am a dev",
-        //     location: {city: "Vilnus", country: "Litva"},
-        //     photoUrl: "https://cdn.costumewall.com/wp-content/uploads/2018/10/mr-clean.jpg"
-        // }
-        ]
+    users: []
 }
 //-------------------dialogsReducer---------------------
 const usersReducer = (state: UsersPageType = initialState,
@@ -99,28 +79,3 @@ const usersReducer = (state: UsersPageType = initialState,
     }
 }
 export default usersReducer
-
-// {
-//     id: v1(),
-//     followed: true,
-//     fullName: "Misha",
-//     status: "I am a boss",
-//     location: {city: "Minsk", country: "Belarus"},
-//     photoUrl: "https://cdn.costumewall.com/wp-content/uploads/2018/10/mr-clean.jpg"
-// },
-// {
-//     id: v1(),
-//     followed: false,
-//     fullName: "Igor",
-//     status: "I am a teacher",
-//     location: {city: "Kiev", country: "Ukraine"},
-//     photoUrl: "https://cdn.costumewall.com/wp-content/uploads/2018/10/mr-clean.jpg"
-// },
-// {
-//     id: v1(),
-//     followed: true,
-//     fullName: "Sasha",
-//     status: "I am a dev",
-//     location: {city: "Vilnus", country: "Litva"},
-//     photoUrl: "https://cdn.costumewall.com/wp-content/uploads/2018/10/mr-clean.jpg"
-// }

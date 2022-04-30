@@ -1,16 +1,12 @@
 import React, {ChangeEvent, FC} from 'react';
 import s from "./MyPosts.module.css"
 import {Post} from "./Post/Post";
-import {PostType, ProfilePageType} from "../../../Redux/profile_reducer";
+import {PostType} from "../../../Redux/profile_reducer";
+import {MyPostPropsType} from "./MyPostsContainer";
 
 
-type MyPostsPropsType = {
-    profilePage: ProfilePageType
-    addPost: () => void
-    updateNewPostText: (text: string) => void
-}
 //_______presentation component____________
-export const MyPosts: FC<MyPostsPropsType> = (props) => {
+export const MyPosts: FC<MyPostPropsType> = (props) => {
     const postsElements = props.profilePage.posts.map(
         (p: PostType) => <Post key={p.id}
                                id={p.id}

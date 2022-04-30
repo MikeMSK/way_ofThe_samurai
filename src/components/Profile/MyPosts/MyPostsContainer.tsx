@@ -7,21 +7,23 @@ import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../Redux/redux_store";
 import {Dispatch} from "redux";
+import exp from "constants";
 
-type mapStateToPropsType = {
+type MapStateToPropsType = {
     profilePage: ProfilePageType
 }
-type mapDispatchToPropsType = {
+type MapDispatchToPropsType = {
     addPost: () => void,
     updateNewPostText: (text: string) => void
 }
+export type MyPostPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         profilePage: state.profilePage
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         addPost: () => dispatch(addPostActionCreator()),
         updateNewPostText: (text: string) => dispatch(updateNewPostTextActionCreator(text))
@@ -31,31 +33,3 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
 export default MyPostsContainer
-
-
-// type MyPostsPropsType = {
-//     store: StoreType
-// }: FC<MyPostsPropsType>
-// export const MyPostsContainer = () => {
-//
-//     return <StoreContext.Consumer>
-//         {(store) => {
-//             const state = store.getState()
-//             const addPost = () => {
-//                 const action = addPostActionСreator(state.profilePage.newPostText)
-//                 store.dispatch(action)
-//             }
-//             const onPostChange = (text: string) => {
-//                 const action = updateNewPostTextActionСreator(text)
-//                 store.dispatch(action)
-//             }
-//
-//             return <MyPosts posts={state.profilePage.posts}
-//                             newPostText={state.profilePage.newPostText}
-//                             addPost={addPost}
-//                             updateNewPostText={onPostChange}/>
-//         }
-//         }
-//     </StoreContext.Consumer>
-// }
-// ;

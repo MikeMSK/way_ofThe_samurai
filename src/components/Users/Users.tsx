@@ -5,15 +5,16 @@ import axios from "axios";
 import userPhoto from "../../assets/img/img1_start-foto.jpeg"
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
+
+    componentDidMount() {
         alert("new")
         axios.get("https://social-network.samuraijs.com/api/1.0/users")
             .then((response: any) => {
                 this.props.setUsers(response.data.items)
             })
     }
-    render = () => {
+
+     render = () => {
         return <div>
             {this.props.usersPage.map(u => {
                 console.log(u)

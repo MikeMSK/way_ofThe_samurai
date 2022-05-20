@@ -20,11 +20,16 @@ export type UsersType = {
 }
 export type UsersPageType = {
     users: UsersType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 export type ActionTypesUsers =
     ReturnType<typeof followAC>
     | ReturnType<typeof unFollowAC>
     | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setUsersTotalCountAC>
 
 //----------------ActionCreator-----------
 
@@ -40,10 +45,21 @@ export const setUsersAC = (users: UsersType[]) => ({
     type: "SET_USERS",
     users
 }) as const
+export const setCurrentPageAC = (currentPage: number) => ({
+    type: "SET_CURRENT_PAGE",
+    currentPage
+}) as const
+export const setUsersTotalCountAC = (totalUsersCount: number) => ({
+    type: "SET_TOTAL_COUNT",
+    totalCount: totalUsersCount
+}) as const
 
 //------------------initialState-----------
 const initialState: UsersPageType = {
-    users: []
+    users: [],
+    pageSize: 20,
+    totalUsersCount: 0,
+    currentPage: 3
 }
 //-------------------dialogsReducer---------------------
 const usersReducer = (state: UsersPageType = initialState,
@@ -71,8 +87,14 @@ const usersReducer = (state: UsersPageType = initialState,
                 }))
             };
         case "SET_USERS": {
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
             // {...state, users: [...state.users, ...action.users]}!!!!
+        }
+        case "SET_CURRENT_PAGE": {
+            return {...state, currentPage: action.currentPage}
+        }
+        case "SET_TOTAL_COUNT": {
+            return {...state, totalUsersCount: action.totalCount}
         }
         default:
             return {...state}

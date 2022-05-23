@@ -8,6 +8,7 @@ type photosType = {
     large: any
     small: any
 }
+
 export type UsersType = {
     name: string
     id: string,
@@ -59,7 +60,7 @@ const initialState: UsersPageType = {
     users: [],
     pageSize: 20,
     totalUsersCount: 0,
-    currentPage: 3
+    currentPage: 1
 }
 //-------------------dialogsReducer---------------------
 const usersReducer = (state: UsersPageType = initialState,

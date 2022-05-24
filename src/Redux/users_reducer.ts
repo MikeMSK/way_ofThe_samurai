@@ -1,14 +1,12 @@
 //----------------TYPE--------------
-
 export type LocationType = {
     city: string,
     country: string
 }
-type photosType = {
+export type photosType = {
     large: any
     small: any
 }
-
 export type UsersType = {
     name: string
     id: string,
@@ -24,6 +22,7 @@ export type UsersPageType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 export type ActionTypesUsers =
     ReturnType<typeof followAC>
@@ -31,9 +30,9 @@ export type ActionTypesUsers =
     | ReturnType<typeof setUsersAC>
     | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setUsersTotalCountAC>
+    | ReturnType<typeof setToggleIsFetchingAC>
 
 //----------------ActionCreator-----------
-
 export const followAC = (userID: string) => ({
     type: "FOLLOW",
     userID
@@ -54,13 +53,18 @@ export const setUsersTotalCountAC = (totalUsersCount: number) => ({
     type: "SET_TOTAL_COUNT",
     totalCount: totalUsersCount
 }) as const
+export const setToggleIsFetchingAC = (isFetching: boolean) => ({
+    type: "TOGGLE IS FETCHING",
+    isFetching
+}) as const
 
 //------------------initialState-----------
 const initialState: UsersPageType = {
     users: [],
     pageSize: 20,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 //-------------------dialogsReducer---------------------
 const usersReducer = (state: UsersPageType = initialState,
@@ -97,6 +101,8 @@ const usersReducer = (state: UsersPageType = initialState,
         case "SET_TOTAL_COUNT": {
             return {...state, totalUsersCount: action.totalCount}
         }
+        case "TOGGLE IS FETCHING":
+            return {...state, isFetching: action.isFetching}
         default:
             return {...state}
     }
